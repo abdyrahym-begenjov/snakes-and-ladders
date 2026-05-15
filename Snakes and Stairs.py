@@ -34,6 +34,13 @@ class Computer:
         self.level-=number
         return self.level
 
+print('Snakes and Stairs')
+print('Creator: Abdyrahym Begenjov    (GitHub: abdyrahym-begenjov)')
+start=input('Enter to start game: ', )
+print('Loading...', )
+sleep(2)
+print('_'*100)
+
 while True:
     count=input('Enter number of the players: ')
     if count in ('2', '3', '4'):
@@ -170,17 +177,21 @@ def brosok(obj):
         elif obj.level>parametr:
             print('Number is bigger than parametr')
             obj.level-=num
+            print(obj.level)
         elif obj.level in snakes:
             print('🐍')
             obj.level-=6
+            print(obj.level)
         elif obj.level in lsnakes:
-            print('Long 🐍')
+            print('🐍🐍')
             obj.level-=12
+            print(obj.level)
         elif obj.level in stairs:
-            print('⬆️')
+            print('🪜')
             obj.level+=6
+            print(obj.level)
         elif obj.level in lstairs:
-            print('Long ⬆️')
+            print('🪜🪜')
             obj.level+=12
             print(obj.level)
         else:
@@ -236,3 +247,5 @@ while True:
                 print(f'3) {spisok1[2]} - BRONZE MEDALIST 😐')
                 print(f'4) {spisok1[3]} - LOSER 😫')
                 break
+
+end=input('Enter to exit: ')
