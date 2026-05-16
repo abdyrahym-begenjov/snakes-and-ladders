@@ -12,11 +12,15 @@ A console implementation of the classic board game "Snakes and Ladders" in Pytho
 * 🐉 **Long Snakes**: Knock back 12 squares.
 * ⬆️ **Ladders**: Move forward 6 squares.
 * 🪜 **Long Ladders**: Move forward 12 squares.
- * **Winning condition**: You must score exactly **50 points**. If the number rolled exceeds the limit, the player remains in place.
+* **Game Modes (Difficulty)**: Choose your target score before starting:
+   * **Easy**: 50 points
+   * **Normal**: 75 points
+   * **Hard**: 100 points
+If the number rolled exceeds the limit, the player remains in place.
 ### 🚀 How to run
 1. Make sure you have Python 3.10 or higher installed.
 2. Download the Snakes and Stairs.py file.
- 3. Run it via the terminal:
+3. Run it via the terminal:
 python "Snakes and Stairs.py
 ### 🛠 Controls
 * Enter the number of players (2, 3, or 4).
@@ -25,9 +29,9 @@ python "Snakes and Stairs.py
 ## 📝 Description of the second commit (Commit Message)
 **Title:** feat: Added player composition selection and the "Moment of Truth" mechanic
 **Description:**
-* **Multiplayer and AI:** Added the ability to select the number of players (from 2 to 4). Implemented support for bots (COMPUTER1-3) if the name field is left blank.
+* **Multiplayer:** Added the ability to select the number of players (from 2 to 4). Implemented support for bots (COMPUTER1-3) if the name field is left blank.
 * **Moment of Truth:** Added an algorithm for determining the turn order at the beginning of the game. The system rolls dice for each player and sorts them in descending order (excluding duplicates by re-rolling).
-*  **Movement Logic:** Added Player and Computer classes. Implemented the throw function with processing of special fields (snakes, ladders, overflights).
+*  **Movement Logic:** Added Human and Computer classes. Implemented the throw function with processing of special fields (snakes, ladders, overflights).
 * **Final Ranking:** Implemented a ranking system (Winner, Runner-up, Loser) based on the number of participants.
 
 # Змейки и Лестницы 🐍⬆️
@@ -42,7 +46,11 @@ python "Snakes and Stairs.py
    * 🐉 **Длинные змеи**: Отбрасывают назад на 12 клеток.
    * ⬆️ **Лестницы**: Продвигают вперед на 6 клеток.
    * 🪜 **Длинные лестницы**: Продвигают вперед на 12 клеток.
- * **Условие победы**: Нужно набрать ровно **50 очков**. Если выпавшее число превышает лимит, игрок остается на месте.
+* **Режимы игры (Сложность)**: Выберите целевое количество очков перед началом:
+   * **Легкий**: 50 очков
+   * **Нормальный**: 75 очков
+   * **Сложный**: 100 очков
+Если выпавшее число превышает лимит, игрок остается на месте.
 ### 🚀 Как запустить
  1. Убедитесь, что у вас установлен Python 3.10 или выше.
  2. Скачайте файл Snakes and Stairs.py.
@@ -55,8 +63,8 @@ python "Snakes and Stairs.py
 ## 📝 Описание второго коммита (Commit Message)
 **Заголовок:** feat: добавлен выбор состава игроков и механика "Момент истины"
 **Описание:**
- * **Мультиплеер и ИИ:** Добавлена возможность выбора количества игроков (от 2 до 4). Реализована поддержка ботов (COMPUTER1-3), если поле имени остается пустым.
+ * **Мультиплеер:** Добавлена возможность выбора количества игроков (от 2 до 4). Реализована поддержка ботов (COMPUTER1-3), если поле имени остается пустым.
  * **Момент истины:** Добавлен алгоритм определения очередности ходов в начале игры. Система бросает кубики за каждого участника и сортирует их по убыванию (исключая дубликаты путем переброса).
- * **Логика передвижения:** Добавлены классы Player и Computer. Реализована функция brosok с обработкой специальных полей (змеи, лестницы, перелет за финишную черту).
+ * **Логика передвижения:** Добавлены классы Human и Computer. Реализована функция brosok с обработкой специальных полей (змеи, лестницы, перелет за финишную черту).
  * **Финальный рейтинг:** Реализована система распределения мест (Победитель, Призер, Проигравший) в зависимости от количества участников.
  * 
