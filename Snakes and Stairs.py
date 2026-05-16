@@ -15,24 +15,11 @@ class Player:
         self.name=name
         self.level=0
         self.status=5
-    def __iadd__(self, number):
-        self.level+=number
-        return self.level
-    def __isub__(self, number):
-        self.level-=number
-        return self.level
-    
-class Computer:
-    def __init__(self, name):
-        self.name=name
-        self.level=0
-        self.status=5
-    def __iadd__(self, number):
-        self.level+=number
-        return self.level
-    def __isub__(self, number):
-        self.level-=number
-        return self.level
+
+class Human(Player):
+    pass    
+class Computer(Player):
+    pass
 
 print('Snakes and Stairs')
 print('Creator: Abdyrahym Begenjov    (GitHub: abdyrahym-begenjov)')
@@ -49,11 +36,36 @@ while True:
     else:
         print('Error!!!')
 
-parametr=50
-snakes=[13, 31]
-lsnakes=[47]
-stairs=[8, 38]
-lstairs=[22]
+snakes, lsnakes, stairs, lstairs, ssnake = [], [], [], [], []
+print('Parametrs of game: Easy (50), Normal (75), Hard (100)')
+while True:
+    parametr=input('Enter the parametr of game: ')
+    parametr=parametr.title().strip()
+    match parametr:
+        case 'Easy':
+            parametr=50
+            snakes=[13, 31]
+            lsnakes=[47]
+            stairs=[8, 38]
+            lstairs=[22]
+            break
+        case 'Normal':
+            parametr=75
+            snakes=[25, 36, 49]
+            lsnakes=[73, 68]
+            stairs=[20, 38, 57]
+            lstairs=[3, 12]
+            break
+        case 'Hard':
+            parametr=100
+            snakes=[24, 64, 63, 62]
+            lsnakes=[13, 49, 80]
+            stairs=[4, 32, 70, 61]
+            lstairs=[15, 55, 87]
+            ssnake=[95]
+            break
+        case _:
+            print('Error!!!')
 
 while True:
     Player1=input('[Player 1] Enter name: ')
@@ -74,9 +86,9 @@ match count:
         Player4=game('Player 4')   
 
 while True:
+    u1=randint(1, 6)
     match count:
         case 2:
-            u1=randint(1, 6)
             u2=randint(1, 6)
             lst=[(Player1, u1), (Player2, u2)]
             lst.sort(key=lambda x: x[1], reverse=True)
@@ -95,7 +107,6 @@ while True:
             else:
                 continue
         case 3:
-            u1=randint(1, 6)
             u2=randint(1, 6)
             u3=randint(1, 6)
             lst=[(Player1, u1), (Player2, u2), (Player3, u3)]
@@ -109,13 +120,12 @@ while True:
                     r.append(i)
             if r==[]:
                 print('Moment of Truth 🥁')
-                sleep(3)
+                sleep(4)
                 print(f'{Player1}: {u1}, {Player2}: {u2}, {Player3}: {u3}')
                 break
             else:
                 continue
         case 4:
-            u1=randint(1, 6)
             u2=randint(1, 6)
             u3=randint(1, 6)
             u4=randint(1, 6)
@@ -142,7 +152,7 @@ for i in new_lst:
     if i in ['COMPUTER1', 'COMPUTER2', 'COMPUTER3']:
         result1.append(Computer(i))
     else:
-        result1.append(Player(i))
+        result1.append(Human(i))
 
 match count:
     case 2:
@@ -162,7 +172,7 @@ final_num=[1, 2, 3, 4]
 
 def brosok(obj):
     if obj.status==5:
-        if isinstance(obj, Player):
+        if isinstance(obj, Human):
             enter=input(f'[{obj.name}] Enter: ')
         if isinstance(obj, Computer):
             print(f'[{obj.name}] Generate: ')
@@ -170,6 +180,7 @@ def brosok(obj):
         print(f'{num}')
         obj.level+=num
         if obj.level==parametr:
+            print(obj.level)
             obj.status=final_num[0]
             print(w[0])
             final_num.pop(0)
@@ -185,6 +196,10 @@ def brosok(obj):
         elif obj.level in lsnakes:
             print('🐍🐍')
             obj.level-=12
+            print(obj.level)
+        elif obj.level in ssnake:
+            print('Dangerous 🐍')
+            obj.level-=60
             print(obj.level)
         elif obj.level in stairs:
             print('🪜')
@@ -203,11 +218,9 @@ def brosok(obj):
 
 while True:
     P1.level, P1.status=brosok(P1)
-    P1.play=True
     match count:
         case 2:
             P2.level, P2.status=brosok(P2)
-            P2.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
@@ -218,9 +231,7 @@ while True:
                 break
         case 3:
             P2.level, P2.status=brosok(P2)
-            P2.play=True
             P3.level, P3.status=brosok(P3)
-            P3.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status), (P3.name, P3.level, P3.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
@@ -232,11 +243,8 @@ while True:
                 break
         case 4:
             P2.level, P2.status=brosok(P2)
-            P2.play=True
             P3.level, P3.status=brosok(P3)
-            P3.play=True
             P4.level, P4.status=brosok(P4)
-            P4.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status), (P3.name, P3.level, P3.status), (P4.name, P4.level, P4.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
