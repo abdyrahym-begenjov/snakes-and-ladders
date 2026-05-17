@@ -15,11 +15,34 @@ class Player:
         self.name=name
         self.level=0
         self.status=5
+        self.play=True
 
 class Human(Player):
-    pass    
+    def __init__(self, name):
+        super().__init__(name)
+        self.money_ice=1
+        self.money_rocket=1
+        self.money_teleport=1
+        self.money_double=1
+    def teleport(self, obj1):
+        result=self.level
+        self.level=obj1.level
+        obj1.level=result
+        self.money_teleport=0
+        return self.level, obj1.level
+    def rocket(self):
+        self.level+=10
+        self.money_rocket=0
+        return self.level
+
 class Computer(Player):
     pass
+
+def ice(obj):
+    obj.play=False
+    return obj.play
+def double(num):
+    return num*2
 
 print('Snakes and Stairs')
 print('Creator: Abdyrahym Begenjov    (GitHub: abdyrahym-begenjov)')
@@ -171,12 +194,81 @@ w=['First Winner', 'Second Winner', 'Third Winner', 'Forth Winner']
 final_num=[1, 2, 3, 4]
 
 def brosok(obj):
-    if obj.status==5:
+    isdouble=False
+    isteleportation=False
+    if obj.status==5 and obj.play!=False:
         if isinstance(obj, Human):
-            enter=input(f'[{obj.name}] Enter: ')
-        if isinstance(obj, Computer):
-            print(f'[{obj.name}] Generate: ')
+            while True:
+                enter=input(f'[{obj.name}] Enter: ')
+                match enter:
+                    case 'teleport':
+                        if obj.money_teleport==0:
+                            print('NO')
+                            isteleportation=False
+                        else:
+                            print('TELEPORTATION')
+                            da_blin=input('Choose player for teleportation: ')
+                            match da_blin:
+                                case P1.name:
+                                    print(f'{obj.name} --> {P1.name}')
+                                    obj.level, P1.level=obj.teleport(P1)
+                                case P2.name:
+                                    print(f'{obj.name} --> {P2.name}')
+                                    obj.level, P2.level=obj.teleport(P2)
+                                case P3.name:
+                                    print(f'{obj.name} --> {P3.name}')
+                                    obj.level, P3.level=obj.teleport(P3)
+                                case P4.name:
+                                    print(f'{obj.name} --> {P4.name}')
+                                    obj.level, P4.level=obj.teleport(P4)
+                                case _:
+                                    print('Error!!!')
+                            isteleportation=True
+                        break
+                    case 'double':
+                        if obj.money_double==0:
+                            print('NO')
+                            isdouble=False
+                        else:
+                            print('DOUBLE')
+                            obj.money_double=0
+                            isdouble=True
+                    case 'rocket':
+                        if obj.money_rocket==0:
+                            print('NO')
+                        elif obj.level+10>=parametr:
+                            print('NO')
+                        else:
+                            print('ROCKET   +10')
+                            obj.level=obj.rocket()
+                    case 'ice':
+                        if obj.money_ice==0:
+                            print('NO')
+                        else:
+                            da_blin=input('Choose player for ice: ')
+                            match da_blin:
+                                case P1.name:
+                                    print(f'ICE: {P1.name}')
+                                    P1.play=ice(P1)
+                                case P2.name:
+                                    print(f'ICE: {P2.name}')
+                                    P2.play=ice(P2)
+                                case P3.name:
+                                    print(f'ICE: {P3.name}')
+                                    P3.play=ice(P3)
+                                case P4.name:
+                                    print(f'ICE: {P4.name}')
+                                    P4.play=ice(P4)
+                            obj.money_ice=0
+                    case _:
+                        break    
+        if isteleportation==False:
+            if isinstance(obj, Computer):
+                print(f'[{obj.name}] Generate: ')
         num=randint(1, 6)
+        if isdouble==True:
+            print(f'{num}x2')
+            num=double(num)
         print(f'{num}')
         obj.level+=num
         if obj.level==parametr:
@@ -212,15 +304,20 @@ def brosok(obj):
         else:
             print(obj.level)
         spisok2_result=(obj.level, obj.status)
+    elif obj.play==False:
+        print(f'{obj.name} is iced!')
+        spisok2_result=(obj.level, obj.status)
     else:
         spisok2_result=(obj.level, obj.status)
     return spisok2_result
 
 while True:
     P1.level, P1.status=brosok(P1)
+    P1.play=True
     match count:
         case 2:
             P2.level, P2.status=brosok(P2)
+            P2.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
@@ -231,7 +328,9 @@ while True:
                 break
         case 3:
             P2.level, P2.status=brosok(P2)
+            P2.play=True
             P3.level, P3.status=brosok(P3)
+            P3.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status), (P3.name, P3.level, P3.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
@@ -243,8 +342,11 @@ while True:
                 break
         case 4:
             P2.level, P2.status=brosok(P2)
+            P2.play=True
             P3.level, P3.status=brosok(P3)
+            P3.play=True
             P4.level, P4.status=brosok(P4)
+            P4.play=True
             spisok=[(P1.name, P1.level, P1.status), (P2.name, P2.level, P2.status), (P3.name, P3.level, P3.status), (P4.name, P4.level, P4.status)]
             spisok.sort(key=lambda x: x[2], reverse=False)
             spisok1=list(map(lambda x: x[0], spisok))
