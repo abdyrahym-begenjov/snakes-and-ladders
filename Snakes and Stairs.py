@@ -1,11 +1,26 @@
 from random import randint
 from time import sleep
+from translator import *
 
-p=['Player 2', 'Player 3', 'Player 4']
-c=['COMPUTER1', 'COMPUTER2', 'COMPUTER3']
+while True:
+    print('English  |  Русский')
+    l=input()
+    l=l.title().strip()
+    match l:
+        case 'English':
+            lan='en'
+            break
+        case 'Русский':
+            lan='ru'
+            break
+        case _:
+            continue
+
+p=[translator('Player 2', lan), translator('Player 3', lan), translator('Player 4', lan)]
+c=[translator('COMPUTER1', lan), translator('COMPUTER2', lan), translator('COMPUTER3', lan)]
 
 def game():
-    name=input(f'[{p[0]}] Enter name: ')
+    name=input(f'[{p[0]}] {translator('Enter name: ', lan)}')
     p.pop(0)
     if name =='':
         name=c[0]
@@ -47,26 +62,29 @@ def ice(obj):
 def double(num):
     return num*2
 
-print('Snakes and Stairs')
-print('Creator: Abdyrahym Begenjov    (GitHub: abdyrahym-begenjov)')
-start=input('Enter to start game: ', )
-print('Loading...', )
+print(translator('Snakes and Stairs', lan))
+print(f'{translator('Creator: Abdyrahym Begenjov', lan)}    (GitHub: abdyrahym-begenjov)')
+start=input(translator('Enter to start game: ', lan))
+print(translator('Loading...', lan))
 sleep(2)
 print('_'*100)
 
 while True:
-    count=input('Enter number of the players: ')
+    count=input(translator('Enter number of the players: ', lan))
     if count in ('2', '3', '4'):
         count=int(count)
         break
     else:
-        print('Error!!!')
+        print(translator('Error!!!', lan))
 
 snakes, lsnakes, stairs, lstairs, ssnake = [], [], [], [], []
-print('Parametrs of game: Easy (50), Normal (75), Hard (100)')
+print(translator('Parametrs of game: Easy (50), Normal (75), Hard (100)', lan))
+
 while True:
-    parametr=input('Enter the parametr of game: ')
+    parametr=input(translator('Enter the parametr of game: ', lan))
     parametr=parametr.title().strip()
+    if lan=='ru':
+        parametr=translator(parametr, 'en1')
     match parametr:
         case 'Easy':
             parametr=50
@@ -91,16 +109,16 @@ while True:
             ssnake=[95]
             break
         case _:
-            print('Error!!!')
+            print(translator('Error!!!', lan))
 
 lst1=[]
 while True:
-    Player1=input('[Player 1] Enter name: ')
+    Player1=input(f'[{translator('Player 1', lan)}] {translator('Enter name: ', lan)}')
     if Player1!='':
         lst1.append(Player1)
         break
     else:
-        print('Error!!!')
+        print(translator('Error!!!', lan))
 
 for i in range(count-1):
     x=game()
@@ -120,7 +138,7 @@ while True:
         else:
             r.append(i)
     if r==[]:
-        print('Moment of Truth 🥁')
+        print(translator('Moment of Truth 🥁', lan))
         match count:
             case 2:
                 sleep(2)
@@ -138,7 +156,7 @@ while True:
 new_lst=list(map(lambda x: x[0], lst))
 result1=[]
 for i in new_lst:
-    if i in ['COMPUTER1', 'COMPUTER2', 'COMPUTER3']:
+    if i in [translator('COMPUTER1', lan), translator('COMPUTER2', lan), translator('COMPUTER3', lan)]:
         result1.append(Computer(i))
     else:
         result1.append(Human(i))
@@ -146,9 +164,9 @@ for i in new_lst:
 for n, i in enumerate(result1, 1):
     print(f'{n}) {i.name}')
 
-start1=input('Enter to start game: ')
-print('Let\'s Go!!!')
-w=['First Winner', 'Second Winner', 'Third Winner', 'Forth Winner']
+start1=input(translator('Enter to start game: ', lan))
+print(translator('Let\'s Go!!!', lan))
+w=[translator('First Winner', lan), translator('Second Winner', lan), translator('Third Winner', lan), translator('Forth Winner', lan)]
 final_num=[1, 2, 3, 4]
 
 def brosok(obj):
@@ -157,18 +175,20 @@ def brosok(obj):
     if obj.status==5 and obj.play!=False:
         if isinstance(obj, Human):
             while True:
-                enter=input(f'[{obj.name}] Enter: ')
+                enter=input(f'[{obj.name}] {translator('Enter: ', lan)}')
+                if lan=='ru':
+                    enter=translator(enter, 'en1')
                 match enter:
                     case 'teleport':
                         if obj.money_teleport==0:
-                            print('NO')
+                            print(translator('NO', lan))
                             isteleportation=False
                         else:
                             while True:
-                                print('TELEPORTATION')
-                                da_blin=input('Choose player for teleportation: ')
+                                print(translator('TELEPORTATION', lan))
+                                da_blin=input(translator('Choose player for teleportation: ', lan))
                                 if da_blin==obj.name:
-                                    print('Don\'t write your name!!!')
+                                    print(translator('Don\'t write your name!!!', lan))
                                 elif da_blin in [i.name for i in result1]:
                                     print(f'{obj.name} --> {da_blin}')
                                     for i in result1:
@@ -176,47 +196,47 @@ def brosok(obj):
                                             obj.level, i.level=obj.teleport(i)
                                     break
                                 else:
-                                    print('Error!!!')
+                                    print(translator('Error!!!', lan))
                             isteleportation=True
                         break
                     case 'double':
                         if obj.money_double==0:
-                            print('NO')
+                            print(translator('NO', lan))
                             isdouble=False
                         else:
-                            print('DOUBLE')
+                            print(translator('DOUBLE', lan))
                             obj.money_double=0
                             isdouble=True
                     case 'rocket':
                         if obj.money_rocket==0:
-                            print('NO')
+                            print(translator('NO', lan))
                         elif obj.level+10>=parametr:
-                            print('NO')
+                            print(translator('NO', lan))
                         else:
-                            print('ROCKET   +10')
+                            print(translator('ROCKET   +10', lan))
                             obj.level=obj.rocket()
                     case 'ice':
                         if obj.money_ice==0:
-                            print('NO')
+                            print(translator('NO', lan))
                         else:
                             while True:
-                                da_blin=input('Choose player for ice: ')
+                                da_blin=input(translator('Choose player for ice: ', lan))
                                 if da_blin==obj.name:
-                                    print('Don\'t write your name!!!')
+                                    print(translator('Don\'t write your name!!!', lan))
                                 elif da_blin in [i.name for i in result1]:
-                                    print(f'ICE: {da_blin}')
+                                    print(f'{translator('ICE:', lan)} {da_blin}')
                                     for i in result1:
                                         if da_blin==i.name:
                                             i.play=ice(i)
                                     obj.money_ice=0
                                     break
                                 else:
-                                    print('Error!!!')
+                                    print(translator('Error!!!', lan))
                     case _:
                         break
         if isteleportation==False:
             if isinstance(obj, Computer):
-                print(f'[{obj.name}] Generate: ')
+                print(f'[{obj.name}] {translator('Generate: ', lan)}')
             num=randint(1, 6)
             if isdouble==True:
                 print(f'{num}x2')
@@ -230,7 +250,7 @@ def brosok(obj):
                 final_num.pop(0)
                 w.pop(0)
             elif obj.level>parametr:
-                print('Number is bigger than parametr')
+                print(translator('Number is bigger than parametr', lan))
                 obj.level-=num
                 print(obj.level)
             elif obj.level in snakes:
@@ -242,7 +262,7 @@ def brosok(obj):
                 obj.level-=12
                 print(obj.level)
             elif obj.level in ssnake:
-                print('Dangerous 🐍')
+                print(f'{translator('Dangerous', lan)} 🐍')
                 obj.level-=60
                 print(obj.level)
             elif obj.level in stairs:
@@ -259,7 +279,7 @@ def brosok(obj):
             print(obj.level)
         spisok2_result=(obj.level, obj.status)
     elif obj.play==False:
-        print(f'{obj.name} is iced!')
+        print(f'{obj.name} {translator('is iced!', lan)}')
         spisok2_result=(obj.level, obj.status)
     else:
         spisok2_result=(obj.level, obj.status)
@@ -276,19 +296,19 @@ while True:
     spisok1=list(map(lambda x: x[0], spisok))
     spisok2=list(map(lambda x: x[2], spisok))
     if 1 in spisok2 and count==2:
-        print(f'1) {spisok1[0]} - WINNER 😎🏆')
-        print(f'2) {spisok1[1]} - LOSER 😫')
+        print(f'1) {spisok1[0]} - {translator('WINNER', lan)} 😎🏆')
+        print(f'2) {spisok1[1]} - {translator('LOSER', lan)} 😫')
         break
     elif 1 in spisok2 and 2 in spisok2 and count==3:
-        print(f'1) {spisok1[0]} - WINNER 😎🏆')
-        print(f'2) {spisok1[1]} - ROUND-UP 😀')
-        print(f'3) {spisok1[2]} - LOSER 😫')
+        print(f'1) {spisok1[0]} - {translator('WINNER', lan)} 😎🏆')
+        print(f'2) {spisok1[1]} - {translator('ROUND-UP', lan)} 😀')
+        print(f'3) {spisok1[2]} - {translator('LOSER', lan)} 😫')
         break
     elif 1 in spisok2 and 2 in spisok2 and 3 in spisok2 and count==4:
-        print(f'1) {spisok1[0]} - WINNER 😎🏆')
-        print(f'2) {spisok1[1]} - ROUND-UP 😀')
-        print(f'3) {spisok1[2]} - BRONZE MEDALIST 😐')
-        print(f'4) {spisok1[3]} - LOSER 😫')
+        print(f'1) {spisok1[0]} - {translator('WINNER', lan)} 😎🏆')
+        print(f'2) {spisok1[1]} - {translator('ROUND-UP', lan)} 😀')
+        print(f'3) {spisok1[2]} - {translator('BRONZE MEDALIST', lan)} 😐')
+        print(f'4) {spisok1[3]} - {translator('LOSER', lan)} 😫')
         break
 
-end=input('Enter to exit: ')
+end=input(translator('Enter to exit: ', lan))
