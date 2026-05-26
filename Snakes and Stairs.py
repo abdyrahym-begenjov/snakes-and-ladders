@@ -2,77 +2,17 @@ from random import randint
 from time import sleep
 from translator import *
 from propython import pyread, pywrite
-from platform import system
-from subprocess import run
+from players import *
+from utils import *
 
 base=pyread('base.json')
 data=pyread('data.json')
 
-def clear_screen():
-    current_os=system()
-    if current_os=='Windows':
-        run(["cls"], shell=True)
-    else:
-        run(['clear'])
-
-def enter_lang():
-    print('English |  Русский')
-    while True:
-        chosen_language=input()
-        chosen_language=chosen_language.title().strip()
-        if chosen_language=='English' or chosen_language=='Русский':
-            break
-
-    match chosen_language:
-        case 'Русский':
-            lang='ru'
-        case 'English':
-            lang='en'
-    data['language']=lang
-    pywrite('data.json', data)
-    return lang
-
 lang=data['language']
 
 if lang=='':
-    lang=enter_lang()
-
-class Player:
-    def __init__(self, name):
-        self.name=name
-        self.level=0
-        self.status=5
-        self.play=True
-
-class Human(Player):
-    def __init__(self, name):
-        super().__init__(name)
-        self.money_ice=1
-        self.money_rocket=1
-        self.money_teleport=1
-        self.money_double=1
-        self.moneys=4
-    def teleport(self, obj1):
-        result=self.level
-        self.level=obj1.level
-        obj1.level=result
-        self.money_teleport=0
-        self.moneys-=1
-        return self.level, obj1.level
-    def rocket(self):
-        self.level+=10
-        self.money_rocket=0
-        self.moneys-=1
-        return self.level
-
-class Computer(Player):
-    pass
-
-def ice(obj):
-    obj.play=False
-    return obj.play
-def double(num):
-    return num*2
+    lang=enter_lang(data)
+    clear_screen()
 
 while True:
     print(translator('Snakes and Stairs', lang))
@@ -80,6 +20,7 @@ while True:
     print(translator('Game      Rules      Highscores      Settings      Exit', lang))
     mode=input(translator('Choose a game mode: ', lang))
     mode=mode.title().strip()
+    clear_screen()
     if lang=='ru':
         mode=translator(mode, 'en1')
     match mode:
@@ -95,7 +36,10 @@ while True:
                     c.pop(0)
                 if name not in base:
                     if name.startswith('КОМПЬЮТЕР'):
-                        base[translator(name, 'en1')]=0
+                        if translator(name, 'en1') in base:
+                            pass
+                        else:
+                            base[translator(name, 'en1')]=0
                     else:
                         base[name]=0
                     pywrite('base.json', base)
@@ -110,8 +54,11 @@ while True:
             while True:
                 count=input(translator('Enter number of the players: ', lang))
                 if count in ('2', '3', '4'):
-                    count=int(count)
-                    break
+                    try:
+                        count=int(count)
+                        break
+                    except ValueError:
+                        print(translator('Error!!!', lang))
                 else:
                     print(translator('Error!!!', lang))
 
@@ -396,7 +343,7 @@ while True:
                     change=translator(change, 'en1')
                 match change:
                     case 'Language':
-                        lang=enter_lang()
+                        lang=enter_lang(data)
                         clear_screen()
                     case _:
                         break
