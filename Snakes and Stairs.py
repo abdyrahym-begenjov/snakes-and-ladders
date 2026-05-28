@@ -63,30 +63,30 @@ while True:
                     print(translator('Error!!!', lang))
 
             snakes, lsnakes, stairs, lstairs, ssnake = [], [], [], [], []
-            print(translator('Parametrs of game: Easy (50), Normal (75), Hard (100)', lang))
+            print(translator('Parameters of game: Easy (50), Normal (75), Hard (100)', lang))
 
             while True:
-                parametr=input(translator('Enter the parametr of game: ', lang))
-                parametr=parametr.title().strip()
+                parameter=input(translator('Enter the parameter of game: ', lang))
+                parameter=parameter.title().strip()
                 if lang=='ru':
-                    parametr=translator(parametr, 'en1')
-                match parametr:
+                    parameter=translator(parameter, 'en1')
+                match parameter:
                     case 'Easy':
-                        parametr=50
+                        parameter=50
                         snakes=[13, 31]
                         lsnakes=[47]
                         stairs=[8, 38]
                         lstairs=[22]
                         break
                     case 'Normal':
-                        parametr=75
+                        parameter=75
                         snakes=[25, 36, 49]
                         lsnakes=[73, 68]
                         stairs=[20, 38, 57]
                         lstairs=[3, 12]
                         break
                     case 'Hard':
-                        parametr=100
+                        parameter=100
                         snakes=[24, 64, 63, 62]
                         lsnakes=[13, 49, 80]
                         stairs=[4, 32, 70, 61]
@@ -201,7 +201,7 @@ while True:
                                 case 'rocket':
                                     if obj.money_rocket==0:
                                         print(translator('NO', lang))
-                                    elif obj.level+10>=parametr:
+                                    elif obj.level+10>=parameter:
                                         print(translator('NO', lang))
                                     else:
                                         print(translator('ROCKET   +10', lang))
@@ -235,7 +235,7 @@ while True:
                             num=double(num)
                         print(f'{num}')
                         obj.level+=num
-                        if obj.level==parametr:
+                        if obj.level==parameter:
                             print(obj.level)
                             obj.status=final_num[0]
                             print(w[0])
@@ -250,8 +250,8 @@ while True:
                             else:
                                 base[obj.name]+=point
                             pywrite('base.json', base)
-                        elif obj.level>parametr:
-                            print(translator('Number is bigger than parametr', lang))
+                        elif obj.level>parameter:
+                            print(translator('Number is bigger than parameter', lang))
                             obj.level-=num
                             print(obj.level)
                         elif obj.level in snakes:
