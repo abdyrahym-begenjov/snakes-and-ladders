@@ -1,6 +1,6 @@
-# snakes-and-stairs
-Snakes and Stairs
-# 🐍 Snakes and Stairs (Змеи и Лестницы) 🪜
+# snakes-and-ladders
+Snakes and Ladders
+# 🐍 Snakes and Ladders (Змеи и Лестницы) 🪜
 ## English
 An interactive, multi-language, console-based digital adaptation of the classic "Snakes and Ladders" board game, built entirely in Python. Play with up to 4 players, including local human players and computer opponents. This version modernizes the timeless classic by introducing unique inventory systems, tactical abilities, variable game difficulties, and a persistent leaderboard system.
 ### ✨ Key Features
@@ -17,7 +17,7 @@ An interactive, multi-language, console-based digital adaptation of the classic 
 #### Prerequisites
 Make sure you have Python 3.10 or higher installed, as this game utilizes modern pythonic structures like match-case statements.
 #### Setup & Execution
- 1. Ensure all dependent helper modules (translator.py, players.py, utils.py, propython.py) and data structures (data.json, base.json) are located in the exact same directory as your main file.
+ 1. Ensure all dependent helper modules (translator.py, players.py, utils.py, propython.py, brosok.py) and data structures (data.json, base.json) are located in the exact same directory as your main file.
  2. Launch the terminal and navigate to your project directory.
  3. Run the primary entry point file using the command: python "Snakes and Stairs.py"
 ### 🎮 Game Rules & Loop
@@ -26,7 +26,7 @@ Make sure you have Python 3.10 or higher installed, as this game utilizes modern
  3. **The Roll of Destiny:** A pre-game dice simulation evaluates everyone's starting agility. The highest rolling sequence dictates the official active turn order.
  4. **Gameplay Options:** On your active turn, simply press Enter to trigger a normal random dice roll (1-6). Alternatively, text-invoke special ability perks like double, teleport, rocket, or ice to turn the tide.
  5. **Hazards & Aids:** * Stepping onto a basic Snake (🐍) or a Large Snake (🐍🐍) drags you down. Beware of the catastrophic *Dangerous Snake* on Hard mode!
-   * Stepping onto Stairs (🪜) or Large Stairs (🪜🪜) accelerates your climb toward the goal.
+   * Stepping onto Ladders (🪜) or Large Ladders (🪜🪜) accelerates your climb toward the goal.
  6. **Victory Condition:** Navigate precisely to the finish line parameter. Landing over the finish line bounces your placement backward. Matches conclude with full placement distributions, crowning an ultimate winner and acknowledging runners-up!
      
 ## Русский
@@ -45,7 +45,7 @@ Make sure you have Python 3.10 or higher installed, as this game utilizes modern
 #### Требования к системе
 Для корректной работы игры требуется установленный интерпретатор Python версии 3.10 или выше (в коде используются конструкции ветвления match-case).
 #### Настройка и запуск
- 1. Убедитесь, что все вспомогательные модули (translator.py, players.py, utils.py, propython.py) и файлы данных (data.json, base.json) находятся в одной папке с основным файлом скрипта.
+ 1. Убедитесь, что все вспомогательные модули (translator.py, players.py, utils.py, propython.py, brosok.py) и файлы данных (data.json, base.json) находятся в одной папке с основным файлом скрипта.
  2. Откройте терминал/командную строку и перейдите в папку проекта.
  3. Запустите игру с помощью команды: python "Snakes and Stairs.py"
 ### 🎮 Правила и игровой процесс
