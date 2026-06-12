@@ -112,9 +112,22 @@ def selection_of_parameters(lang):
     return parameters
 
 def draw_leaderboard(base, lang):
-    base=dict(sorted(base.items(), key=lambda x: x[1], reverse=True))
-    for i, j in base.items():
-        if i.startswith('COMPUTER') and lang=='ru':
-            i=translator(i, 'ru')
-        print(f'{i}: {j}')
+    print(translator('LEADERBOARD:', lang))
+    base=list(base.items())
+    base.sort(key=lambda x: x[1], reverse=True)
+    base=dict(base)
 
+    line1=f'|{translator('NAME |', lang):>18} {translator('POINTS', lang):<16}|'
+    line='-'*len(line1)
+    print(line)
+    print(line1)
+    print(line)
+
+    for i, j in base.items():
+        name=translator(i, lang) if i.startswith('COMPUTER') else i
+        a=str(j)
+        name1=f'{name} |'
+    
+        line2=f'|{name1:>18} {a:<16}|'
+        print(line2)
+        print(line)

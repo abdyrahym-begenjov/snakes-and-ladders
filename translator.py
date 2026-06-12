@@ -61,6 +61,8 @@ rutranslate={
     'Highscores': 'Рекорды',
     'Settings': 'Настройки',
     'Exit': 'Выход',
+    'NAME |': 'ИМЯ |',
+    'POINTS': 'БАЛЛЫ',
     'LEADERBOARD:': 'ЛИДЕРБОРД:', 
     'Since you didn\'t use any abilities, you get double points': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки'
              }
