@@ -9,11 +9,19 @@ from brosok import *
 base=pyread('base.json')
 data=pyread('data.json')
 
+name=data['name']
 lang=data['language']
 
 if lang=='':
     lang=enter_lang(data)
     clear_screen()
+
+if name=='':
+    name=enter_name(data, lang)
+    clear_screen()
+    
+if name not in base:
+    base[name]=0
 
 while True:
     print(translator('Snakes and Ladders', lang))
@@ -32,10 +40,10 @@ while True:
             sleep(2)
             clear_screen()
             while True:
-                count=input(translator('Enter number of the players: ', lang))
-                if count in ('2', '3', '4'):
+                game_count=input(translator('Enter number of the players: ', lang))
+                if game_count in ('2', '3', '4'):
                     try:
-                        count=int(count)
+                        game_count=int(game_count)
                         break
                     except ValueError:
                         print(translator('Error!!!', lang))
@@ -46,23 +54,13 @@ while True:
 
             parameters=selection_of_parameters(lang)
 
-            lst1=[]
-            while True:
-                Player1=input(f'[{translator('Player 1', lang)}] {translator('Enter name: ', lang)}')
-                if Player1!='':
-                    lst1.append(Player1)
-                    if Player1 not in base:
-                        base[Player1]=0
-                        pywrite('base.json', base)
-                    break
-                else:
-                    print(translator('Error!!!', lang))
+            lst1=[name]
 
-            for i in range(count-1):
-                x=game(p, c, base, lang)
+            for i in range(game_count-1):
+                x=game(p, c, lst1, base, lang)
                 lst1.append(x)
 
-            result1=selection_of_order(lst1, count, lang, Computer, Human)
+            result1=selection_of_order(lst1, game_count, lang, Computer, Human)
 
             for n, i in enumerate(result1, 1):
                 print(f'{n}) {i.name}')
@@ -84,16 +82,16 @@ while True:
                 spisok.sort(key=lambda x: x[2], reverse=False)
                 spisok1=list(map(lambda x: x[0], spisok))
                 spisok2=list(map(lambda x: x[2], spisok))
-                if 1 in spisok2 and count==2:
+                if 1 in spisok2 and game_count==2:
                     print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
                     print(f'2) {spisok1[1]} - {translator('LOSER', lang)} 😫')
                     break
-                elif 1 in spisok2 and 2 in spisok2 and count==3:
+                elif 1 in spisok2 and 2 in spisok2 and game_count==3:
                     print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
                     print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)} 😀')
                     print(f'3) {spisok1[2]} - {translator('LOSER', lang)} 😫')
                     break
-                elif 1 in spisok2 and 2 in spisok2 and 3 in spisok2 and count==4:
+                elif 1 in spisok2 and 2 in spisok2 and 3 in spisok2 and game_count==4:
                     print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
                     print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)} 😀')
                     print(f'3) {spisok1[2]} - {translator('BRONZE MEDALIST', lang)} 😐')
@@ -119,10 +117,14 @@ while True:
 
         case 'Settings':
             while True:
+                print(f'{translator('Name', lang)}: {data['name']}')
                 print(f'{translator('Language', lang)}: {data['language']}')
-                change=input(translator('Do you want to change language (Enter \"Language\"): ', lang))
+                change=input(translator('Do you want to change parameters (Enter \"Name\" or \"Language\"): ', lang))
                 change=new_word(change, lang)
                 match change:
+                    case 'Name':
+                        name=enter_name(data, lang)
+                        clear_screen()
                     case 'Language':
                         lang=enter_lang(data)
                         clear_screen()

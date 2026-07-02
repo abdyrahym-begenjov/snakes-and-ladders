@@ -4,6 +4,7 @@ rutranslate={
     'COMPUTER2': 'КОМПЬЮТЕР2',
     'COMPUTER3': 'КОМПЬЮТЕР3',
     'Enter name: ': 'Введите имя: ',
+    'Enter your name: ': 'Введите свое имя: ',
     'Snakes and Ladders': 'Змеи и Лестницы',
     'Creator: Abdyrahym Begenjov': 'Создатель: Абдырахым Бегенджов',
     'Enter to start game: ': 'Нажмите, чтобы начать игру: ',
@@ -14,7 +15,6 @@ rutranslate={
     'Easy': 'Лёгкий',
     'Normal': 'Нормальный',
     'Hard': 'Сложный',
-    'Player 1': 'Игрок 1',
     'Player 2': 'Игрок 2',
     'Player 3': 'Игрок 3',
     'Player 4': 'Игрок 4',
@@ -51,9 +51,10 @@ rutranslate={
     'Enter to exit mode: ': 'Войдите в режим выхода: ',
     'Game      Rules      Highscores      Settings      Exit': 'Игра      Правила      Рекорды      Настройки      Выход',
     'Choose a game mode: ': 'Выберите режим игры: ',
-    'Do you want to change language (Enter \"Language\"): ': 'Хотите ли вы изменить язык (введите \"Язык\"): ',
+    'Do you want to change parameters (Enter \"Name\" or \"Language\"): ': 'Хотите ли вы изменить параметры (введите \"Имя\" или \"Язык\"): ',
     'Do you want to exit (\"Yes\" or \"No\"): ': 'Вы хотите завершить (\"Да\" или \"Нет\"): ',
     'Goodbye!!!': 'До свидания!!',
+    'Name': 'Имя',
     'Language': 'Язык',
     'No': 'Нет',
     'Game': 'Игра',
@@ -63,7 +64,8 @@ rutranslate={
     'Exit': 'Выход',
     'NAME |': 'ИМЯ |',
     'POINTS': 'БАЛЛЫ',
-    'LEADERBOARD:': 'ЛИДЕРБОРД:', 
+    'LEADERBOARD:': 'ЛИДЕРБОРД:',
+    'This name is already taken': 'Это имя уже занято',
     'Since you didn\'t use any abilities, you get double points': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки'
              }
 

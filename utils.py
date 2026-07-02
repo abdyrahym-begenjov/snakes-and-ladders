@@ -31,12 +31,25 @@ def enter_lang(data):
     pywrite('data.json', data)
     return lang
 
-def game(p, c, base, lang):
-    name=input(f'[{p[0]}] {translator('Enter name: ', lang)}')
-    p.pop(0)
-    if name=='':
-        name=c[0]
-        c.pop(0)
+def enter_name(data, lang):
+    while True:
+        name=input(translator('Enter your name: ', lang))
+        if name!='':
+            data['name']=name
+            pywrite('data.json', data)
+            return name
+
+def game(p, c, lst1, base, lang):
+    while True:
+        name=input(f'[{p[0]}] {translator('Enter name: ', lang)}')
+        if name in lst1:
+            print(translator('This name is already taken', lang))
+        else:
+            if name=='':
+                name=c[0]
+                c.pop(0)
+            p.pop(0)
+            break
     if name not in base:
         if name.startswith('КОМПЬЮТЕР'):
             if translator(name, 'en1') in base:
@@ -54,7 +67,7 @@ def new_word(word, lang):
         word=translator(word, 'en1')
     return word
 
-def selection_of_order(lst1, count, lang, Computer, Human):
+def selection_of_order(lst1, game_count, lang, Computer, Human):
     while True:
         lst=[]
         for i in lst1:
@@ -70,7 +83,7 @@ def selection_of_order(lst1, count, lang, Computer, Human):
                 r.append(i)
         if r==[]:
             print(translator('Moment of Truth 🥁', lang))
-            match count:
+            match game_count:
                 case 2:
                     sleep(2)
                 case 3:
