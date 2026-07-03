@@ -35,10 +35,6 @@ while True:
             p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
             c=[translator('COMPUTER1', lang), translator('COMPUTER2', lang), translator('COMPUTER3', lang)]
             
-            start=input(translator('Enter to start game: ', lang))
-            print(translator('Loading...', lang))
-            sleep(2)
-            clear_screen()
             while True:
                 game_count=input(translator('Enter number of the players: ', lang))
                 if game_count in ('2', '3', '4'):
@@ -46,13 +42,15 @@ while True:
                         game_count=int(game_count)
                         break
                     except ValueError:
-                        print(translator('Error!!!', lang))
+                        clear_screen()
                 else:
-                    print(translator('Error!!!', lang))
+                    clear_screen()
+            clear_screen()
 
             print(translator('Parameters of game: Easy (50), Normal (75), Hard (100)', lang))
 
             parameters=selection_of_parameters(lang)
+            clear_screen()
 
             lst1=[name]
 
@@ -66,6 +64,8 @@ while True:
                 print(f'{n}) {i.name}')
 
             start1=input(translator('Enter to start game: ', lang))
+            print(translator('Loading...', lang))
+            sleep(2)
             clear_screen()
             print(translator('Let\'s Go!!!', lang))
             w=[translator('First Winner', lang), translator('Second Winner', lang), translator('Third Winner', lang), translator('Forth Winner', lang)]

@@ -90,6 +90,7 @@ def selection_of_order(lst1, game_count, lang, Computer, Human):
                     sleep(4)
                 case 4:
                     sleep(6)
+            clear_screen()
             result=[f'{i}: {c}' for i, c in lst]
             text=', '.join(result)
             print(text)

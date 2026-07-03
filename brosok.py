@@ -62,7 +62,7 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                         else:
                             while True:
                                 print(translator('ICE 🧊', lang))
-                                da_blin=input(translator('Choose player for ice: ', lang))
+                                da_blin=input(translator('Choose player to freeze: ', lang))
                                 if da_blin==obj.name:
                                     print(translator('Don\'t write your name!!!', lang))
                                 elif da_blin in [i.name for i in result1]:
@@ -131,7 +131,7 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
             print(obj.level)
         spisok2_result=(obj.level, obj.status)
     elif obj.play==False:
-        print(f'{obj.name} {translator('is iced!', lang)}')
+        print(f'{obj.name} {translator('is frozen!', lang)}')
         spisok2_result=(obj.level, obj.status)
     else:
         spisok2_result=(obj.level, obj.status)
