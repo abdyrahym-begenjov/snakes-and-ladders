@@ -17,11 +17,9 @@ if lang=='':
     clear_screen()
 
 if name=='':
-    name=enter_name(data, lang)
+    name=enter_name(data, base, lang)
     clear_screen()
-    
-if name not in base:
-    base[name]=0
+
 
 while True:
     print(translator('Snakes and Ladders', lang))
@@ -123,7 +121,7 @@ while True:
                 change=new_word(change, lang)
                 match change:
                     case 'Name':
-                        name=enter_name(data, lang)
+                        name=enter_name(data, base, lang)
                         clear_screen()
                     case 'Language':
                         lang=enter_lang(data)

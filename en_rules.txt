@@ -18,12 +18,12 @@ any tactical abilities.
 ---------------------------------------------------------------------------------
 When you launch the game, you can navigate through the following system modes:
 * Game: Launches the configuration setup to start a live match.
-• Rules: The mode provides players with a quick guide to the game's mechanics, 
-winning conditions, and menu navigation.
+* Rules: The mode provides players with a quick guide to the game's mechanics, 
+  winning conditions, and menu navigation.
 * Highscores: Displays a persistent scoreboard containing all registered players 
-and their cumulative points saved across matches, sorted from highest to lowest.
+  and their cumulative points saved across matches, sorted from highest to lowest.
 * Settings: Allows you to switch the active interface language from
-English to Russian at any time and change the name for the permanent first player.
+  English to Russian at any time and change the name for the permanent first player.
 * Exit: Safely closes the game application after a confirmation prompt.
 
 ---------------------------------------------------------------------------------
@@ -122,6 +122,7 @@ and Third Winner.
 * No-Ability Multiplier Bonus: If a human player has not used up any of his 4 
 starting tactical abilities, he receives a double point bonus.
 * Match Termination: A 2-player match ends as soon as 1st place is decided. A 3-player 
-match ends when 1st and 2nd places are secured. A 4-player match ends once 1st, 2nd, 
-and 3rd places are filled. All points earned are instantly saved to the base profile 
-for bragging rights on the Highscores leaderboard.
+match ends when 1st and 2nd places are secured. A 4-player match ends once 1st, 
+2nd, and 3rd places are filled. All points earned are instantly saved to the base 
+profile for bragging rights on the Highscores leaderboard.
+=================================================================================

@@ -13,6 +13,7 @@ def clear_screen():
         run(['clear'])
 
 def enter_lang(data):
+    clear_screen()
     while True:
         print('English |  Русский')
         chosen_language=input()
@@ -31,12 +32,23 @@ def enter_lang(data):
     pywrite('data.json', data)
     return lang
 
-def enter_name(data, lang):
+def enter_name(data, base, lang):
+    clear_screen()
     while True:
         name=input(translator('Enter your name: ', lang))
-        if name!='':
+        name=name.strip()
+        if name=='':
+            clear_screen()
+            print(translator('Error!!!', lang))
+        elif len(name)>16:
+            clear_screen()
+            print(translator('The name must not exceed 16 characters', lang))
+        else:
             data['name']=name
             pywrite('data.json', data)
+            if name not in base:
+                base[name]=0
+                pywrite('base.json', base)
             return name
 
 def game(p, c, lst1, base, lang):
@@ -44,6 +56,8 @@ def game(p, c, lst1, base, lang):
         name=input(f'[{p[0]}] {translator('Enter name: ', lang)}')
         if name in lst1:
             print(translator('This name is already taken', lang))
+        elif len(name)>16:
+            print(translator('The name must not exceed 16 characters', lang))
         else:
             if name=='':
                 name=c[0]

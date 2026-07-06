@@ -66,6 +66,7 @@ rutranslate={
     'POINTS': 'БАЛЛЫ',
     'LEADERBOARD:': 'ЛИДЕРБОРД:',
     'This name is already taken': 'Это имя уже занято',
+    'The name must not exceed 16 characters': 'Имя не должно превышать 16 символов',
     'Since you didn\'t use any abilities, you get double points': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки'
              }
 
